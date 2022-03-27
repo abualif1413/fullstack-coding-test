@@ -17,20 +17,24 @@ module.exports = {
              * Example:
              * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
              */
-            yield queryInterface.createTable('product', {
-                product_id: {
+            return Promise.all([
+                queryInterface.addColumn('product', 'customer_id', {
                     type: Sequelize.INTEGER,
-                    autoIncrement: true,
-                    primaryKey: true
-                },
-                customer_id: Sequelize.INTEGER,
-                product_type_id: Sequelize.INTEGER,
-                delivery_status: {
-                    type: Sequelize.ENUM("PENDING", "ORDERED", "SHIPPED", "CANCELLED"),
-                },
-                delivery_address: Sequelize.STRING,
-                estimated_delivery_date: Sequelize.DATE
-            });
+                    references: {
+                        model: 'customer',
+                        key: 'customer_id',
+                    },
+                    onUpdate: "CASCADE",
+                }),
+                queryInterface.addColumn('product', 'product_type_id', {
+                    type: Sequelize.INTEGER,
+                    references: {
+                        model: 'product-type',
+                        key: 'product_type_id',
+                    },
+                    onUpdate: "CASCADE",
+                }),
+            ]);
         });
     },
     down(queryInterface, Sequelize) {
@@ -41,7 +45,6 @@ module.exports = {
              * Example:
              * await queryInterface.dropTable('users');
              */
-            yield queryInterface.dropTable('product');
         });
     }
 };

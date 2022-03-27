@@ -11,12 +11,12 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Product.belongsToMany(models.Customer, {
-        foreignKey: "customer_id",
-      });
-      Product.belongsToMany(models.ProductType, {
-        foreignKey: "product_type_id",
-      });
+      // Product.belongsToMany(models.Customer, {
+      //   foreignKey: "customer_id",
+      // });
+      // Product.belongsToMany(models.ProductType, {
+      //   foreignKey: "product_type_id",
+      // });
     }
   }
   Product.init({
@@ -35,6 +35,10 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Product',
+    tableName: 'product',
+    timestamps: false,
+    createdAt: false,
+    updatedAt: false,
   });
   return Product;
 };
