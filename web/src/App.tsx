@@ -45,14 +45,14 @@ const ButtonStatus = styled.button`
   padding: 0.3rem;
 `;
 
-const enum ProductStatus  {
+export const enum ProductStatus  {
   PENDING = 'PENDING',
   ORDERED = 'ORDERED',
   SHIPPED = 'SHIPPED',
   CANCELLED = 'CANCELLED',
 }
 
-const ProductList: FC<ProductListProps> = ({
+export const ProductList: FC<ProductListProps> = ({
   productId,
   productName,
   deliveryStatus,
@@ -67,13 +67,13 @@ const ProductList: FC<ProductListProps> = ({
     <ProductCard>
       <div className='product-name'>{productName}</div>
       <div className='status-type'>
-        <div className='delivery-status'>{deliveryStatus}</div>
+        <div className='delivery-status' data-testid={`delivery-status-${productId}`}>{deliveryStatus}</div>
         <div className='status-type'>{productType}</div>
       </div>
       <div>Ordered by: {orderedBy}</div>
       <div>Estimated at: {estimatedDeliveryDate}</div>
       {
-        allStatus.map((status, index) => <ButtonStatus key={index} disabled={deliveryStatus === status} title='Click to change status' onClick={() => onButtonStatusClicked(status)}>{status}</ButtonStatus>)
+        allStatus.map((status, index) => <ButtonStatus key={index} disabled={deliveryStatus === status} title='Click to change status' onClick={() => onButtonStatusClicked(status)} data-testid={`delivery-button-${status}-${productId}`}>{status}</ButtonStatus>)
       }
     </ProductCard>
   );
