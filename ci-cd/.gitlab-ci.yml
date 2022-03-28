@@ -1,0 +1,30 @@
+build-job:
+  stage: build
+  script:
+    - cd web
+    - yarn install
+    - echo "Building application"
+    - yarn build
+    - echo "build successfully for frontend application"
+    - cd ..
+    - cd api
+    - yarn install
+    - echo "Migrating database"
+    - yarn sequelize-cli db:migrate
+
+test-job:
+  stage: test
+  script:
+    - cd ..
+    - cd web
+    - echo "Running unit test for frontend application"
+    - yarn test
+    - cd ..
+    - cd api
+    - echo "Running unit test for API"
+    - yarn test
+
+deploy-prod:
+  stage: deploy
+  script:
+    - echo "I'm really sorry for this part because I never have any experience to deploy app to the cloud as in my previous projects, deployment done by devops division"
