@@ -25,4 +25,4 @@
 # web (frontend) section
 1. Enter the **web** folder via terminal / bash
 2. type `npm start` or `yarn start` to start development server
-3. Check [http://localhost:3000](`http://localhost:3000`) to indicate that the application runs successfully
+3. Check [http://localhost:3000](http://localhost:3000) to indicate that the application runs successfully
