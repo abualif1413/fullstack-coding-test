@@ -30,6 +30,7 @@ module.exports = (sequelize, DataTypes) => {
     delivery_status: {
       type: DataTypes.ENUM("PENDING", "ORDERED", "SHIPPED", "CANCELLED"),
     },
+    name: DataTypes.STRING,
     delivery_address: DataTypes.STRING,
     estimated_delivery_date: DataTypes.DATE
   }, {
