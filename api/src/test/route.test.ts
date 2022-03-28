@@ -34,9 +34,6 @@ describe('testing routes', async () => {
       });
   }).timeout(50000);
   
-  // const products = await getAllProduct();
-  // console.log('products', products.length);
-  
   it('update delivery status route should works and update the delivery status', function(done){
     const app = require('../index');
     getAllProduct().then((products) => {
